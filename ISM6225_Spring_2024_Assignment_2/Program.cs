@@ -63,7 +63,17 @@ namespace Assignment_2
             try
             {
                 // Write your code here
-                return new List<int>(); // Placeholder
+                List<int> missing = new List<int>();
+                bool[] present = new bool[nums.Length + 1];
+
+                foreach (var num in nums)
+                    present[num] = true;
+
+                for (int i = 1; i <= nums.Length; i++)
+                    if (!present[i])
+                        missing.Add(i);
+
+                return missing;
             }
             catch (Exception)
             {
@@ -77,7 +87,18 @@ namespace Assignment_2
             try
             {
                 // Write your code here
-                return new int[0]; // Placeholder
+                int[] result = new int[nums.Length];
+                int evenIndex = 0, oddIndex = nums.Length - 1;
+
+                foreach (var num in nums)
+                {
+                    if (num % 2 == 0)
+                        result[evenIndex++] = num;
+                    else
+                        result[oddIndex--] = num;
+                }
+
+                return result;
             }
             catch (Exception)
             {
@@ -91,7 +112,18 @@ namespace Assignment_2
             try
             {
                 // Write your code here
-                return new int[0]; // Placeholder
+                Dictionary<int, int> map = new Dictionary<int, int>();
+
+                for (int i = 0; i < nums.Length; i++)
+                {
+                    int complement = target - nums[i];
+                    if (map.ContainsKey(complement))
+                        return new int[] { map[complement], i };
+
+                    map[nums[i]] = i;
+                }
+
+                return new int[] { };
             }
             catch (Exception)
             {
@@ -105,7 +137,9 @@ namespace Assignment_2
             try
             {
                 // Write your code here
-                return 0; // Placeholder
+                Array.Sort(nums);
+                int n = nums.Length;
+                return Math.Max(nums[0] * nums[1] * nums[n - 1], nums[n - 1] * nums[n - 2] * nums[n - 3]);
             }
             catch (Exception)
             {
@@ -119,7 +153,7 @@ namespace Assignment_2
             try
             {
                 // Write your code here
-                return "101010"; // Placeholder
+                return Convert.ToString(decimalNumber, 2);
             }
             catch (Exception)
             {
@@ -133,7 +167,18 @@ namespace Assignment_2
             try
             {
                 // Write your code here
-                return 0; // Placeholder
+                int left = 0, right = nums.Length - 1;
+
+                while (left < right)
+                {
+                    int mid = (left + right) / 2;
+                    if (nums[mid] > nums[right])
+                        left = mid + 1;
+                    else
+                        right = mid;
+                }
+
+                return nums[left];
             }
             catch (Exception)
             {
@@ -147,7 +192,9 @@ namespace Assignment_2
             try
             {
                 // Write your code here
-                return false; // Placeholder
+                if (x < 0) return false;
+                string str = x.ToString();
+                return str == new string(str.Reverse().ToArray());
             }
             catch (Exception)
             {
@@ -161,7 +208,18 @@ namespace Assignment_2
             try
             {
                 // Write your code here
-                return 0; // Placeholder
+                if (n <= 1)
+                    return n;
+                int a = 0, b = 1;
+
+                for (int i = 2; i <= n; i++)
+                {
+                    int temp = a + b;
+                    a = b;
+                    b = temp;
+                }
+
+                return b;
             }
             catch (Exception)
             {
